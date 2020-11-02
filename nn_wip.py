@@ -39,7 +39,7 @@ def getFitness(individual, X, y):
         # get features subset
         X_parsed = X.drop(X.columns[cols], axis=1)
         X_subset = pd.get_dummies(X_parsed)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30)
+        X_train, X_test, y_train, y_test = train_test_split(X_subset, y, test_size=0.30)
         # apply classification algorithm
         # clf = LogisticRegression(max_iter = 10000)
         # clf =  MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1)
@@ -50,8 +50,8 @@ def getFitness(individual, X, y):
                       loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
                       metrics=['accuracy'])
         
-        nn_model.fit(X, y, epochs=300)
-        test_loss, test_acc = nn_model.evaluate(X,  y, verbose=2)
+        nn_model.fit(X_subset, y, epochs=300)
+        test_loss, test_acc = nn_model.evaluate(X_subset,  y, verbose=2)
         return test_acc
     else:
         return(0,)
