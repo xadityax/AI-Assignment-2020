@@ -2,7 +2,7 @@
 """
 Created on Sun Oct 25 13:21:47 2020
 
-@author: Aditya Agarwal
+@author: Aditya 
 """
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler  # doctest: +SKIP
